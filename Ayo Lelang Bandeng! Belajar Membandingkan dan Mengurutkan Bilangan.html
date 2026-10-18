@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ayo Lelang Bandeng! Belajar Membandingkan dan Mengurutkan Bilangan</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e8f6fb;--card:#fff;--ink:#1d3557;--sub:#4a6580;--blue:#2a9d8f;--sky:#bde6f2;--yel:#ffe08a;--pink:#ffc2d1;--grn:#c8f0cf;--red:#e63946;--ok:#2e9e4f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f2230;--card:#18374a;--ink:#f1f7fb;--sub:#a9c3d4;--blue:#4fd1c1;--sky:#1f4e63;--yel:#6b5a1d;--pink:#6b2f41;--grn:#1f5a37;--red:#ff7b86;--ok:#6be08c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f2230;--card:#18374a;--ink:#f1f7fb;--sub:#a9c3d4;--blue:#4fd1c1;--sky:#1f4e63;--yel:#6b5a1d;--pink:#6b2f41;--grn:#1f5a37;--red:#ff7b86;--ok:#6be08c;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;font-size:18px;line-height:1.45}
+main{max-width:760px;margin:0 auto;padding:14px 14px 40px}
+.hero{background:linear-gradient(160deg,var(--sky),var(--yel));border-radius:28px;padding:26px 18px;text-align:center;border:3px solid var(--ink);position:relative;overflow:hidden}
+.hero h1{margin:6px 0;font-size:34px;line-height:1.1;font-weight:800}
+.hero p{margin:4px 0;color:var(--sub);font-weight:700}
+.big{font-size:56px;display:block;animation:sw 3s ease-in-out infinite}
+@keyframes sw{50%{transform:translateX(16px) rotate(6deg)}}
+.tag{display:inline-block;background:var(--card);border:2px solid var(--ink);border-radius:99px;padding:2px 14px;font-size:15px;font-weight:700;margin-top:8px}
+.wave{height:16px;background:repeating-linear-gradient(90deg,var(--blue) 0 24px,transparent 24px 48px);border-radius:99px;opacity:.5;margin:18px 0}
+section{background:var(--card);border:3px solid var(--ink);border-radius:24px;padding:18px;margin:18px 0}
+h2{margin:0 0 8px;font-size:26px;font-weight:800}
+h2 span{background:var(--yel);border-radius:12px;padding:0 10px;margin-right:6px}
+.note{background:var(--yel);border-radius:16px;padding:10px 14px;font-weight:700;margin:12px 0;border:2px dashed var(--ink)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.pill{flex:1 1 140px;border-radius:18px;padding:10px;text-align:center;border:2px solid var(--ink);font-weight:700}
+.pill b{display:block;font-size:30px}
+.p1{background:var(--pink)}.p2{background:var(--yel)}.p3{background:var(--grn)}.p4{background:var(--sky)}
+.sym{display:flex;gap:8px;flex-wrap:wrap}
+.sym div{flex:1 1 150px;background:var(--sky);border:2px solid var(--ink);border-radius:18px;padding:10px;text-align:center}
+.sym b{font-size:44px;display:block;line-height:1}
+.steps{counter-reset:s;list-style:none;padding:0;margin:8px 0}
+.steps li{counter-increment:s;position:relative;padding:8px 8px 8px 52px;margin:6px 0;background:var(--bg);border-radius:16px}
+.steps li::before{content:counter(s);position:absolute;left:8px;top:6px;width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:800}
+table{border-collapse:separate;border-spacing:4px;width:100%;text-align:center;font-weight:700}
+th{background:var(--sky);border-radius:10px;padding:6px}
+td{background:var(--bg);border-radius:10px;padding:6px}
+td.hl{background:var(--grn)}
+.ex{font-size:26px;font-weight:800;text-align:center;margin:8px 0}
+.q{background:var(--bg);border-radius:18px;padding:12px;margin:10px 0;border:2px solid transparent}
+.q.good{border-color:var(--ok)}.q.bad{border-color:var(--red)}
+.cmp{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;font-size:22px;font-weight:800}
+button{font:inherit;font-weight:800;cursor:pointer;border:2px solid var(--ink);background:var(--yel);color:var(--ink);border-radius:14px;padding:4px 14px;min-width:46px}
+button:active{transform:scale(.94)}
+button.reset{background:var(--card);font-size:15px}
+.fb{min-height:26px;text-align:center;font-weight:700;margin-top:4px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:8px 0}
+.chips button{background:var(--pink);font-size:18px}
+.chips button:disabled{opacity:.35}
+.ans{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;min-height:44px;align-items:center}
+.ans span{background:var(--grn);border:2px solid var(--ink);border-radius:12px;padding:2px 10px;font-weight:800}
+.score{position:sticky;top:calc(env(safe-area-inset-top,0px) + 6px);z-index:5;text-align:center;background:var(--card);border:3px solid var(--ink);border-radius:99px;padding:2px 12px;font-weight:800;width:max-content;margin:0 auto 6px}
+ul.cl{padding-left:22px;margin:6px 0}
+.foot{text-align:center;color:var(--sub);font-weight:700;font-size:15px}
+</style>
+</head>
+<body>
+<main>
+<div class="hero">
+<span class="big">🐟</span>
+<h1>Ayo Lelang Bandeng!</h1>
+<p>Belajar Membandingkan dan Mengurutkan Bilangan sampai 10.000</p>
+<span class="tag">Matematika • Kelas IV</span>
+</div>
+
+<div class="wave"></div>
+
+<section>
+<h2><span>🎯</span>Aku Bisa!</h2>
+<p>Setelah belajar ini, aku bisa:</p>
+<ul class="cl">
+<li>membandingkan dua bilangan dengan <b>&gt;</b>, <b>&lt;</b>, atau <b>=</b></li>
+<li>mengurutkan bilangan dari yang <b>terkecil</b> sampai <b>terbesar</b></li>
+</ul>
+<div class="note">💡 Harga bandeng di pasar itu bilangan juga, lho. Yuk kita belajar!</div>
+</section>
+
+<section>
+<h2><span>🏠</span>1. Nilai Tempat</h2>
+<p>Setiap angka punya rumah. Contoh bilangan <b>Rp7.305</b>:</p>
+<div class="row">
+<div class="pill p1"><b>7</b>ribuan<br>7.000</div>
+<div class="pill p2"><b>3</b>ratusan<br>300</div>
+<div class="pill p3"><b>0</b>puluhan<br>0</div>
+<div class="pill p4"><b>5</b>satuan<br>5</div>
+</div>
+<div class="note">👑 Rumah paling kiri paling berkuasa! Ribuan &gt; ratusan &gt; puluhan &gt; satuan.</div>
+</section>
+
+<section>
+<h2><span>⚖️</span>2. Membandingkan</h2>
+<div class="sym">
+<div><b>&gt;</b>lebih dari<br><small>kiri lebih besar</small></div>
+<div><b>&lt;</b>kurang dari<br><small>kiri lebih kecil</small></div>
+<div><b>=</b>sama dengan<br><small>sama besar</small></div>
+</div>
+<div class="note">🐟 Tips: anggap simbol itu mulut ikan. Mulutnya selalu <u>terbuka ke bilangan yang lebih besar</u>. Ikan itu rakus!</div>
+<h3>Langkah detektif angka 🔍</h3>
+<ol class="steps">
+<li>Tulis kedua bilangan di rumah nilai tempat.</li>
+<li>Mulai dari paling kiri (ribuan).</li>
+<li>Kalau angkanya sama, geser ke kanan.</li>
+<li>Berhenti saat angkanya beda. Angka yang lebih besar menang!</li>
+</ol>
+<h3>Contoh</h3>
+<table>
+<tr><th></th><th>Ribuan</th><th>Ratusan</th><th>Puluhan</th></tr>
+<tr><td>Rp7.300</td><td>7</td><td class="hl">3</td><td>0</td></tr>
+<tr><td>Rp7.150</td><td>7</td><td class="hl">1</td><td>5</td></tr>
+</table>
+<p>Ribuan sama, lanjut ke ratusan. 3 lebih besar dari 1.</p>
+<div class="ex">Rp7.300 &gt; Rp7.150 🎉</div>
+</section>
+
+<section>
+<h2><span>🪜</span>3. Mengurutkan</h2>
+<p>Susun dari <b>terkecil</b> ke <b>terbesar</b> seperti tangga naik.</p>
+<ol class="steps">
+<li>Bandingkan bilangannya satu per satu.</li>
+<li>Cari yang paling kecil, taruh paling depan.</li>
+<li>Cari yang terkecil berikutnya, ulangi.</li>
+<li>Yang paling besar jadi yang terakhir.</li>
+</ol>
+<p>Contoh: <b>Rp4.700, Rp4.250, Rp4.900, Rp4.350</b>. Ribuannya sama (4), jadi lihat ratusan: 7, 2, 9, 3.</p>
+<div class="ex">Rp4.250 → Rp4.350 → Rp4.700 → Rp4.900 🏁</div>
+</section>
+
+<div class="score" id="score">⭐ 0 / 6</div>
+
+<section>
+<h2><span>🏆</span>4. Ayo Berlatih</h2>
+<h3>A. Pilih tandanya</h3>
+<div id="cmp"></div>
+<h3>B. Urutkan dari terkecil</h3>
+<p style="margin:0">Ketuk bilangan sesuai urutannya.</p>
+<div id="ord"></div>
+</section>
+
+<section>
+<h2><span>📝</span>5. Rangkuman</h2>
+<ul class="cl">
+<li>Bandingkan mulai dari nilai tempat paling kiri.</li>
+<li>Kalau angkanya sama, geser ke kanan sampai ada yang beda.</li>
+<li>Mengurutkan = menyusun bilangan dari terkecil sampai terbesar.</li>
+</ul>
+<h3>Refleksi 💭</h3>
+<ul class="cl">
+<li>Apa yang aku pelajari hari ini?</li>
+<li>Bagian mana yang masih sulit?</li>
+<li>Apa yang paling seru hari ini?</li>
+</ul>
+</section>
+
+<p class="foot">Disusun oleh Desy Dwi Susanti • SD Muhammadiyah 2 Gresik</p>
+</main>
+
+<script>
+var cmpQ=[[3600,3900],[5480,5420],[8150,8150],[7205,7250]];
+var ordQ=[[2400,2040,2004,2440],[6750,6075,6705,6570]];
+var done={},total=6;
+function rp(n){return "Rp"+String(n).replace(/\B(?=(\d{3})+(?!\d))/g,".")}
+function sc(){var s=0;for(var k in done)if(done[k])s++;document.getElementById("score").textContent=(s===total?"🎉 ":"⭐ ")+s+" / "+total}
+var c=document.getElementById("cmp");
+cmpQ.forEach(function(q,i){
+  var d=document.createElement("div");d.className="q";
+  var right=q[0]>q[1]?">":q[0]<q[1]?"<":"=";
+  d.innerHTML='<div class="cmp"><span>'+rp(q[0])+'</span><span class="sl">❓</span><span>'+rp(q[1])+'</span></div><div class="cmp" style="margin-top:8px"></div><div class="fb"></div>';
+  var bw=d.children[1],fb=d.children[2],sl=d.querySelector(".sl");
+  [">","<","="].forEach(function(s){
+    var b=document.createElement("button");b.textContent=s;
+    b.onclick=function(){
+      if(s===right){sl.textContent=s;d.className="q good";fb.textContent="Benar! Hebat! 🐟";done["c"+i]=1}
+      else{d.className="q bad";fb.textContent="Coba lagi ya. Lihat angka paling kiri dulu 🔍"}
+      sc()};
+    bw.appendChild(b)});
+  c.appendChild(d)});
+var o=document.getElementById("ord");
+ordQ.forEach(function(q,i){
+  var d=document.createElement("div");d.className="q";
+  var key=q.slice().sort(function(a,b){return a-b}),pick=[];
+  d.innerHTML='<div class="chips"></div><div class="ans"></div><div class="fb"></div><div class="cmp"></div>';
+  var ch=d.children[0],an=d.children[1],fb=d.children[2],rs=d.children[3];
+  var rb=document.createElement("button");rb.className="reset";rb.textContent="↺ Ulangi";rs.appendChild(rb);
+  function draw(){an.innerHTML="";pick.forEach(function(n){var s=document.createElement("span");s.textContent=rp(n);an.appendChild(s)})}
+  q.forEach(function(n){
+    var b=document.createElement("button");b.textContent=rp(n);
+    b.onclick=function(){
+      b.disabled=true;pick.push(n);draw();
+      if(pick.length===q.length){
+        var ok=pick.every(function(v,j){return v===key[j]});
+        d.className="q "+(ok?"good":"bad");
+        fb.textContent=ok?"Urutannya tepat! Keren! 🪜":"Belum tepat. Tekan Ulangi, lalu cari yang terkecil dulu.";
+        if(ok)done["o"+i]=1;sc()}};
+    ch.appendChild(b)});
+  rb.onclick=function(){pick=[];draw();fb.textContent="";d.className="q";delete done["o"+i];
+    ch.querySelectorAll("button").forEach(function(b){b.disabled=false});sc()};
+  o.appendChild(d)});
+</script>
+</body>
+</html>
